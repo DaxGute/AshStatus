@@ -2,11 +2,16 @@
     import { onMount } from 'svelte';
 
     let note = ""
+    let color = "white"
 
     onMount(async () => {
         let noteRES = await fetch('/note', {method: "GET"});
         let noteJSON = await noteRES.json();
         note = noteJSON.value;
+
+        let colorRES = await fetch('/color', {method: "GET"});
+        let colorJSON = await colorRES.json();
+        color = colorJSON.value;
     });
 
 </script>
@@ -14,7 +19,7 @@
 <svelte:window style="background-color: {backgroundColor}"/>
 
   
-<div class="full-width-text">
+<div class="full-width-text" style="background-color: {color}">
     {note}
 </div>
 

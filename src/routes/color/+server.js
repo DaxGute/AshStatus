@@ -2,9 +2,11 @@ import { env } from '$env/dynamic/private';
 import { json } from '@sveltejs/kit';
 
 export async function POST({ request, params, url }) {
-    let response = await fetch("https://api.spotify.com/v1/me/player/next", {
-            method: "POST", headers: { Authorization: `Bearer ${env.SPOTIFY_CLIENT_ACCESS_TOKEN}` }
-        })
+    let requestJSON = await request.json();
+    env.COLOR = requestJSON.value;
+    return json("ok")
+}
 
-    return json(response)
+export async function GET() {
+    return json({"value": env.COLOR})
 }
