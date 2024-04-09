@@ -10,7 +10,7 @@
 	});
 
     async function updateColor(event){
-        let noteRES = await fetch('/color', {
+        let colorRES = await fetch('/color', {
         method: "POST",
         body: JSON.stringify({"value": color}),
     });
